@@ -1,23 +1,36 @@
 package ac.za.cput.adp3.xyzcongolmerate.factory.user;
 
+import ac.za.cput.adp3.xyzcongolmerate.domain.user.UserDemography;
 import org.junit.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
 public class UserDemographyFactoryTest {
 
-    //TODO: implement method body ONLY!
+    private  SimpleDateFormat simpleDateFormat = new SimpleDateFormat(("dd/MM/yyyy"));
+
+    private  Date date_Of_Birth = parseDate("20/08/2019");
+
+    private Date parseDate(final String dateString) {
+        try {
+            return simpleDateFormat.parse(dateString);
+        } catch (final ParseException e) {
+            return new Date();
+        }
+    }
+
+    public void setUp(){
+
+    }
     @Test
     public void buildUserDemography() {
-        throw new UnsupportedOperationException("Not supported yet.");
-        /**
-         * Your implementation goes here
-         *
-         * INSTRUCTION
-         * 1. Remove line [//TODO: implement method body ONLY!]
-         * 2. Remove line [throw new UnsupportedOperationException("Not yet supported.");]
-         * 3. Test the UserDemographyFactory class
-         * 4. Assert that the an object is created.
-         */
+        UserDemography userDemography = UserDemographyFactory.buildUserDemography("smpazi95@gmail.com","S.M","F2","B2",date_Of_Birth);
+
+        System.out.println(userDemography.getUserTitle());
+        assertEquals("S.M",userDemography.getUserTitle());
     }
 }
